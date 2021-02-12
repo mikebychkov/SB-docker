@@ -1,0 +1,26 @@
+version: '3'
+services:
+  posts:
+    image: mikebychkov/sb-posts
+    ports:
+      - "5001:5001"      
+    environment:
+      PROFILE: "doc"
+      DB_SERVER: "db:5432"
+  finder:
+    image: mikebychkov/sb-finder
+    ports:
+      - "5002:5002"      
+    environment:
+      PROFILE: "doc"
+      REDIS_SERVER: "redis:6379"
+  db:
+    image: postgres:12.5    
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Zxcv1234"
+      POSTGRES_DB: "sb_posts"
+  redis:
+    image: redis
+    restart: always
+    
